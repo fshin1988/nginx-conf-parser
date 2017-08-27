@@ -63,7 +63,7 @@ end
           when /\A[^;\s{}]+/
             @q.push [:KEY, $&]
             key_found = 1
-          when /\A./
+          when /\A[{}]/
             @q.push [$&, $&]
           else
             raise RuntimeError, "must not happen"
@@ -84,8 +84,6 @@ end
           when /\A{/
             @q.push [$&, $&]
             key_found = nil
-          when /\A./
-            @q.push [$&, $&]
           else
             raise RuntimeError, "must not happen"
           end
